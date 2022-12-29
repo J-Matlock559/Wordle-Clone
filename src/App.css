@@ -76,8 +76,8 @@
   justify-content: center;
   align-items: center;
   background-color: grey;
-  width: 2rem;
-  height: 4rem;
+  width: 1.5rem;
+  height: 3rem;
   border-radius: 5px;
 }
 
@@ -90,9 +90,19 @@
 }
 
 .keyboard-big-key {
-  width: 4rem;
+  width: 3rem;
 }
 
 .keyboard-empty {
   width: .8rem;
+}
+
+@media screen and (min-width: 385px) {
+  .keyboard-key {
+    width: 2rem;
+    height: 4rem;
+  }
+  .keyboard-big-key {
+    width: 4rem;
+  }
 }

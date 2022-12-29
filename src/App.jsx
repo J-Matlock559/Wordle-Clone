@@ -41,6 +41,11 @@ function App() {
 
   const checkWord = () => {
     if (inputCount !== 5) {return}
+
+    const currentWord = letters.slice(-5);
+    const checkValidWord = currentWord[0].letter + currentWord[1].letter + currentWord[2].letter + currentWord[3].letter + currentWord[4].letter;
+    if (!validWords.includes(checkValidWord.toLowerCase())) {alert('Word not in word list'); return}
+
     const checkedWord = [...letters];
     setClickedLetters(keyboardLetters);
     setKeyboardWord(secretWord);
@@ -56,10 +61,19 @@ function App() {
   }
 
   const getNewWord = () => {
+    setSecretWord([]);
+    setClickedLetters([]);
+    setLetters([]);
+    setInputCount(0);
+    setKeyboardLetters([]);
+    setKeyboardWord([]);
+    setWordNumber(0);
+
     const newWordIndex = Math.floor(Math.random() * validWords.length);
     const newWord = validWords[newWordIndex].toUpperCase();
     const newWordArray = newWord.split('');
     setSecretWord(newWordArray);
+    
     console.log(newWordArray);
   }
 
