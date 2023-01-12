@@ -31,13 +31,13 @@ function Keyboard({handleLetter, backSpace, checkWord, clickedLetters, secretWor
         </div>
         <div className="keyboard-row">
           <div className="keyboard-key keyboard-big-key" onClick={() => checkWord()}>Enter</div>
-          <div className={secretWord.includes('Z') && clickedLetters.includes('A') ? "keyboard-key keyboard-green" : clickedLetters.includes('Z') ? "keyboard-key keyboard-dark" : "keyboard-key"} onClick={(e) => {handleLetter(e)}}>Z</div>
-          <div className={secretWord.includes('X') && clickedLetters.includes('S') ? "keyboard-key keyboard-green" : clickedLetters.includes('X') ? "keyboard-key keyboard-dark" : "keyboard-key"} onClick={(e) => {handleLetter(e)}}>X</div>
-          <div className={secretWord.includes('C') && clickedLetters.includes('D') ? "keyboard-key keyboard-green" : clickedLetters.includes('C') ? "keyboard-key keyboard-dark" : "keyboard-key"} onClick={(e) => {handleLetter(e)}}>C</div>
-          <div className={secretWord.includes('V') && clickedLetters.includes('F') ? "keyboard-key keyboard-green" : clickedLetters.includes('V') ? "keyboard-key keyboard-dark" : "keyboard-key"} onClick={(e) => {handleLetter(e)}}>V</div>
-          <div className={secretWord.includes('B') && clickedLetters.includes('G') ? "keyboard-key keyboard-green" : clickedLetters.includes('B') ? "keyboard-key keyboard-dark" : "keyboard-key"} onClick={(e) => {handleLetter(e)}}>B</div>
-          <div className={secretWord.includes('N') && clickedLetters.includes('H') ? "keyboard-key keyboard-green" : clickedLetters.includes('N') ? "keyboard-key keyboard-dark" : "keyboard-key"} onClick={(e) => {handleLetter(e)}}>N</div>
-          <div className={secretWord.includes('M') && clickedLetters.includes('J') ? "keyboard-key keyboard-green" : clickedLetters.includes('M') ? "keyboard-key keyboard-dark" : "keyboard-key"} onClick={(e) => {handleLetter(e)}}>M</div>
+          <div className={secretWord.includes('Z') && clickedLetters.includes('Z') ? "keyboard-key keyboard-green" : clickedLetters.includes('Z') ? "keyboard-key keyboard-dark" : "keyboard-key"} onClick={(e) => {handleLetter(e)}}>Z</div>
+          <div className={secretWord.includes('X') && clickedLetters.includes('X') ? "keyboard-key keyboard-green" : clickedLetters.includes('X') ? "keyboard-key keyboard-dark" : "keyboard-key"} onClick={(e) => {handleLetter(e)}}>X</div>
+          <div className={secretWord.includes('C') && clickedLetters.includes('C') ? "keyboard-key keyboard-green" : clickedLetters.includes('C') ? "keyboard-key keyboard-dark" : "keyboard-key"} onClick={(e) => {handleLetter(e)}}>C</div>
+          <div className={secretWord.includes('V') && clickedLetters.includes('V') ? "keyboard-key keyboard-green" : clickedLetters.includes('V') ? "keyboard-key keyboard-dark" : "keyboard-key"} onClick={(e) => {handleLetter(e)}}>V</div>
+          <div className={secretWord.includes('B') && clickedLetters.includes('B') ? "keyboard-key keyboard-green" : clickedLetters.includes('B') ? "keyboard-key keyboard-dark" : "keyboard-key"} onClick={(e) => {handleLetter(e)}}>B</div>
+          <div className={secretWord.includes('N') && clickedLetters.includes('N') ? "keyboard-key keyboard-green" : clickedLetters.includes('N') ? "keyboard-key keyboard-dark" : "keyboard-key"} onClick={(e) => {handleLetter(e)}}>N</div>
+          <div className={secretWord.includes('M') && clickedLetters.includes('M') ? "keyboard-key keyboard-green" : clickedLetters.includes('M') ? "keyboard-key keyboard-dark" : "keyboard-key"} onClick={(e) => {handleLetter(e)}}>M</div>
           <div className="keyboard-key keyboard-big-key" onClick={(e) => {backSpace()}}>Back</div>
         </div>
       </div>
