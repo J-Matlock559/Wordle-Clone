@@ -130,34 +130,34 @@
   position: relative;
   width: 100%;
   height: 100%;
-  border: 1px solid rgb(102, 102, 102);
+  border: 2px solid rgb(102, 102, 102);
   
-  transition: transform 750ms;
+  transition: transform 850ms;
   transform-style: preserve-3d;
 }
 
 .flip-1 {
-  transform: rotateX(180deg);
+  transform: rotateX(-180deg);
 }
 
 .flip-2 {
   transition-delay: 300ms;
-  transform: rotateX(180deg);
+  transform: rotateX(-180deg);
 }
 
 .flip-3 {
   transition-delay: 600ms;
-  transform: rotateX(180deg);
+  transform: rotateX(-180deg);
 }
 
 .flip-4 {
   transition-delay: 900ms;
-  transform: rotateX(180deg);
+  transform: rotateX(-180deg);
 }
 
 .flip-5 {
   transition-delay: 1200ms;
-  transform: rotateX(180deg);
+  transform: rotateX(-180deg);
 }
 
 .tile-front, .tile-back {

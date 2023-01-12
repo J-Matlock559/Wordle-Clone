@@ -66,7 +66,11 @@ function App() {
     setLetters(checkedWord);
     setWordNumber(wordNumber + 5);
 
-    if (checkWinWord === checkValidWord) {youWin()};
+    if (checkWinWord === checkValidWord) {
+      setTimeout(() => {
+        youWin()
+      }, 2500);
+    };
   }
 
   const getNewWord = () => {
