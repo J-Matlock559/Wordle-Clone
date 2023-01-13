@@ -1,7 +1,31 @@
-import React from 'react'
+import {useContext} from 'react'
+import { DuplicateContext } from '../App'
 
 function BoardTile({letters, index, flipPosition}) {
-  const test = "tile-back tile-green"
+  const [secretWordDupes, keyedDupes, dupeInPlace] = useContext(DuplicateContext);
+
+  const letter = letters[index]
+
+  const falseDupe = () => {
+    if (keyedDupes.includes(letter?.letter) && !secretWordDupes.includes(letter?.letter) && dupeInPlace && !letter?.inPlace ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+// if (letter?.letter !== undefined){
+//   console.log(letter?.letter + " " + keyedDupes.includes(letter?.letter)  + " " + !secretWordDupes.includes(letter?.letter)  + " " +  dupeInPlace + " " + !letter?.inPlace)}
+
+  // console.log(letter?.letter + " " + falseDupe());
+  // console.log(falseDupe());
+  const color = () => {
+    if (!letter?.inWord || falseDupe()) return "dark"
+    if (letter?.inWord && !letter?.inPlace) return "yellow"
+    if (letter?.inPlace) return "green"
+  }
+
+  // console.log(letter?.letter + " " + color());
+
   return (
     <>
       <div className="flip-tile">
@@ -13,7 +37,13 @@ function BoardTile({letters, index, flipPosition}) {
           }>
 
           <div className="tile-front">{letters[index]?.letter}</div>
-          <div className={!letters[index]?.inWord ? "tile-back" : letters[index]?.inPlace ? "tile-back tile-green" : "tile-back tile-yellow"}>{letters[index]?.letter}</div>
+          <div className={
+            color() === "dark" ? "tile-back" : 
+            color() === "green" ? "tile-back tile-green" :
+             "tile-back tile-yellow"
+            }>{letters[index]?.letter}
+          </div>
+
         </div>
       </div>
     </>
