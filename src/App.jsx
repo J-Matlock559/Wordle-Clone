@@ -1,8 +1,10 @@
 import { useState, useEffect, createContext } from 'react'
 import Keyboard from './Components/Keyboard';
-import { validWords } from './Utilities/wordList';
+import { validWords, playableWords } from './Utilities/wordList';
 import './App.css'
 import WinScreen from './Components/WinScreen';
+import LoseScreen from './Components/LoseScreen';
+import InvalidWord from './Components/InvalidWord';
 import GameBoard from './Components/GameBoard';
 
 export const DuplicateContext = createContext();
@@ -17,6 +19,8 @@ function App() {
   const [secretWord, setSecretWord] = useState([]);
   const [checkWinWord, setCheckWinWord] = useState('')
   const [showWin, setShowWin] = useState(false);
+  const [showLose, setShowLose] = useState(false);
+  const [showInvalid, setShowInvalid] = useState(false);
   const [secretWordDupes, setSecretWordDupes] = useState([]);
   const [keyedDupes, setKeyedDupes] = useState([]);
   const [dupeInPlace, setDupeInPlace] = useState(false);
@@ -46,7 +50,7 @@ function App() {
     setInputCount(inputCount + 1);
     let duplicate = false;
     if (secretWordDupes.includes(e.target.innerText)) {duplicate = true}; 
-    setLetters([...letters, {letter: e.target.innerText, inWord: false, inPlace: false, flipLetter: false, isDupe: duplicate, keyedDupe: false}])
+    setLetters([...letters, {letter: e.target.innerText, inWord: false, inPlace: false, flipLetter: false, isDupe: duplicate, keyedDupe: false, isUsed: false}])
     setKeyboardLetters([...keyboardLetters, e.target.innerText])
     console.log(letters);
   }
@@ -56,7 +60,7 @@ function App() {
 
     const currentWord = letters.slice(-5);
     const checkValidWord = currentWord[0].letter + currentWord[1].letter + currentWord[2].letter + currentWord[3].letter + currentWord[4].letter;
-    if (!validWords.includes(checkValidWord.toLowerCase())) {alert('Word not in word list'); return}
+    if (!playableWords.includes(checkValidWord.toLowerCase())) {isInvalid(); return}
 
     let duplicateInPlace = false;
 
@@ -70,6 +74,7 @@ function App() {
 
     checkedWord.map((letter, index) => {
       letter.flipLetter = true;
+      letter.isUsed = true;
       if (secretWord.includes(letter.letter)) {letter.inWord = true};
       if (secretWord[index - wordNumber] === letter.letter) {letter.inPlace = true};
       if (duplicateLetters.includes(letter.letter)) {letter.keyedDupe = true};
@@ -85,10 +90,18 @@ function App() {
     setDupeInPlace(duplicateInPlace);
     setLetters(checkedWord);
     setWordNumber(wordNumber + 5);
-    console.log(duplicateInPlace);
+
+    console.log(wordNumber);
+  
     if (checkWinWord === checkValidWord) {
       setTimeout(() => {
         youWin()
+      }, 2500);
+    };
+
+    if (checkWinWord !== checkValidWord && wordNumber === 25) {
+      setTimeout(() => {
+        youLose()
       }, 2500);
     };
   }
@@ -102,6 +115,7 @@ function App() {
     setKeyboardWord([]);
     setWordNumber(0);
     setShowWin(false);
+    setShowLose(false);
 
     const newWordIndex = Math.floor(Math.random() * validWords.length);
     const newWord = validWords[newWordIndex].toUpperCase();
@@ -121,6 +135,14 @@ function App() {
     setShowWin(true);
   }
 
+  const youLose = () => {
+    setShowLose(true);
+  }
+
+  const isInvalid = () => {
+    setShowInvalid(true);
+  }
+
 
   return (
     <div className="App">
@@ -134,6 +156,8 @@ function App() {
         <GameBoard letters={letters} />
 
         <WinScreen getNewWord={getNewWord} showWin={showWin} setShowWin={setShowWin} />
+        <LoseScreen getNewWord={getNewWord} showLose={showLose} setShowLose={setShowLose} secretWord={secretWord} />
+        <InvalidWord showInvalid={showInvalid} setShowInvalid={setShowInvalid} />
 
         <Keyboard handleLetter={handleLetter} backSpace={backSpace} checkWord={checkWord} clickedLetters={clickedLetters} secretWord={keyboardWord} />
       </DuplicateContext.Provider>
