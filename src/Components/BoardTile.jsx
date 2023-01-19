@@ -14,11 +14,6 @@ function BoardTile({letters, index, flipPosition}) {
       return false;
     }
   }
-// if (letter?.letter !== undefined){
-//   console.log(letter?.letter + " " + keyedDupes.includes(letter?.letter)  + " " + !secretWordDupes.includes(letter?.letter)  + " " +  dupeInPlace + " " + !letter?.inPlace)}
-
-  // console.log(letter?.letter + " " + falseDupe());
-  // console.log(falseDupe());
 
   useEffect(() => {
     let tempColor = "";
@@ -26,11 +21,8 @@ function BoardTile({letters, index, flipPosition}) {
     if (!letter?.inWord || falseDupe()) tempColor = "dark"
       if (letter?.inPlace) tempColor = "green"
       setColor(tempColor);
-      console.log(letter?.letter + " " + falseDupe());
   }, [letter?.isUsed]);
   
-
-  // console.log(letter?.letter + " " + color());
 
   return (
     <>
@@ -42,12 +34,12 @@ function BoardTile({letters, index, flipPosition}) {
           flipPosition === 4 ? "flip-tile-inner flip-4" : "flip-tile-inner flip-5"           
           }>
 
-          <div className="tile-front">{letters[index]?.letter}</div>
+          <div className="tile-front"><b>{letters[index]?.letter}</b></div>
           <div className={
             color === "dark" ? "tile-back" : 
             color === "green" ? "tile-back tile-green" :
              "tile-back tile-yellow"
-            }>{letters[index]?.letter}
+            }><b>{letters[index]?.letter}</b>
           </div>
 
         </div>

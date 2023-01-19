@@ -27,6 +27,9 @@ function App() {
 
   const [inputCount, setInputCount] = useState(0);
 
+  if (!localStorage.getItem("Stats")){
+  localStorage.setItem("Stats", JSON.stringify({wins: 0, losses: 0, currentStreak: 0, maxStreak: 0, plays: 0, win1: 0, win2: 0, win3: 0, win4: 0, win5: 0, win6: 0}));}
+
   useEffect(() => {
     getNewWord();
   }, [])
@@ -52,7 +55,6 @@ function App() {
     if (secretWordDupes.includes(e.target.innerText)) {duplicate = true}; 
     setLetters([...letters, {letter: e.target.innerText, inWord: false, inPlace: false, flipLetter: false, isDupe: duplicate, keyedDupe: false, isUsed: false}])
     setKeyboardLetters([...keyboardLetters, e.target.innerText])
-    console.log(letters);
   }
 
   const checkWord = () => {
@@ -68,7 +70,6 @@ function App() {
     setKeyedDupes(duplicateLetters);
 
     const checkedWord = [...letters];
-    setClickedLetters(keyboardLetters);
     setKeyboardWord(secretWord);
     setInputCount(0);
 
@@ -79,8 +80,6 @@ function App() {
       if (secretWord[index - wordNumber] === letter.letter) {letter.inPlace = true};
       if (duplicateLetters.includes(letter.letter)) {letter.keyedDupe = true};
     })
-    console.log(keyedDupes);
-    console.log(checkedWord);
     
     checkedWord.map((letter) => {
       
@@ -91,15 +90,39 @@ function App() {
     setLetters(checkedWord);
     setWordNumber(wordNumber + 5);
 
-    console.log(wordNumber);
+    setTimeout(() => {
+      keyboardColors();
+    }, 2000);
   
     if (checkWinWord === checkValidWord) {
+      const statsObject = JSON.parse(localStorage.getItem('Stats'));
+      statsObject.wins += 1;
+      statsObject.currentStreak +=1;
+      statsObject.plays += 1;
+      if (statsObject.currentStreak > statsObject.maxStreak){ statsObject.maxStreak = statsObject.currentStreak };
+      if ( wordNumber === 0 ) { statsObject.win1  += 1 };
+      if ( wordNumber === 5 ) { statsObject.win2  += 1 };
+      if ( wordNumber === 10 ) { statsObject.win3  += 1 };
+      if ( wordNumber === 15 ) { statsObject.win4  += 1 };
+      if ( wordNumber === 20 ) { statsObject.win5  += 1 };
+      if ( wordNumber === 25 ) { statsObject.win6  += 1 };
+      localStorage.setItem("Stats", JSON.stringify(statsObject));
+
       setTimeout(() => {
         youWin()
       }, 2500);
     };
 
     if (checkWinWord !== checkValidWord && wordNumber === 25) {
+      const statsObject = JSON.parse(localStorage.getItem('Stats'));
+      statsObject.losses += 1;
+      statsObject.currentStreak = 0;
+      statsObject.plays += 1;
+      console.log(wordNumber);
+      
+
+      localStorage.setItem("Stats", JSON.stringify(statsObject));
+
       setTimeout(() => {
         youLose()
       }, 2500);
@@ -143,13 +166,17 @@ function App() {
     setShowInvalid(true);
   }
 
+  const keyboardColors = () => {
+    setClickedLetters(keyboardLetters);
+  }
+
 
   return (
     <div className="App">
 
       <div className='header'>
-        <b>Turdle</b>
-        <button onClick={getNewWord}>Get a New Word</button>
+        <h2>NEWordle</h2>
+        <button style={{padding: "7px"}} onClick={getNewWord}>Get a New Word</button>
       </div>
       <DuplicateContext.Provider value={[secretWordDupes, keyedDupes, dupeInPlace]}>
 

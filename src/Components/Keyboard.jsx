@@ -1,4 +1,6 @@
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faDeleteLeft } from '@fortawesome/free-solid-svg-icons'
 
 function Keyboard({handleLetter, backSpace, checkWord, clickedLetters, secretWord}) {
   return (
@@ -38,7 +40,7 @@ function Keyboard({handleLetter, backSpace, checkWord, clickedLetters, secretWor
           <div className={secretWord.includes('B') && clickedLetters.includes('B') ? "keyboard-key keyboard-green" : clickedLetters.includes('B') ? "keyboard-key keyboard-dark" : "keyboard-key"} onClick={(e) => {handleLetter(e)}}>B</div>
           <div className={secretWord.includes('N') && clickedLetters.includes('N') ? "keyboard-key keyboard-green" : clickedLetters.includes('N') ? "keyboard-key keyboard-dark" : "keyboard-key"} onClick={(e) => {handleLetter(e)}}>N</div>
           <div className={secretWord.includes('M') && clickedLetters.includes('M') ? "keyboard-key keyboard-green" : clickedLetters.includes('M') ? "keyboard-key keyboard-dark" : "keyboard-key"} onClick={(e) => {handleLetter(e)}}>M</div>
-          <div className="keyboard-key keyboard-big-key" onClick={(e) => {backSpace()}}>Back</div>
+          <div className="keyboard-key keyboard-big-key" style={{fontSize: "1.5rem"}} onClick={(e) => {backSpace()}}><FontAwesomeIcon icon={faDeleteLeft}/></div>
         </div>
       </div>
   )

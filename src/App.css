@@ -32,7 +32,7 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  height: 30%;
+  height: 33%;
   
 }
 
@@ -41,8 +41,8 @@
   justify-content: center;
   align-items: center;
   background-color: grey;
-  width: 1.5rem;
-  height: 3rem;
+  width: 8.5%;
+  height: 85%;
   border-radius: 5px;
 }
 
@@ -51,15 +51,15 @@
 }
 
 .keyboard-green {
-  background-color: green;
+  background-color: #3e8f35;
 }
 
 .keyboard-big-key {
-  width: 2.5rem;
+  width: 13%;
 }
 
 .keyboard-empty {
-  width: .8rem;
+  width: 3%;
 }
 
 .win-container {
@@ -76,10 +76,11 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 80%;
-  height: 40%;
+  min-height: 40%;
+  padding: 2rem;
   background-color: rgb(43, 43, 43);
 }
 
@@ -89,10 +90,35 @@
   right: 0;
 }
 
+.stats {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  /* margin-top: 2rem; */
+}
+
+.stats > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.stat-title {
+  font-size: 10px;
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 30px;
+  margin-bottom: -10px;
+  text-align: center;
+}
+
 .board {
   height: 60%;
   width: 100%;
-  padding: 2rem;
+  padding: 1.7rem;
   /* border: 1px solid white; */
 }
 
@@ -102,6 +128,7 @@
   align-items: center;
   height: 15%;
   width: 100%;
+  margin-bottom: 5px;
 }
 
 .board-tile {
@@ -111,7 +138,7 @@
   font-size: 2rem;
   height: 90%;
   width: 20%;
-  margin-inline: 5px;
+  margin-inline: 3px;
   background-color: #1a1a1a;
   border: 1px solid rgb(102, 102, 102);
 }
@@ -120,8 +147,8 @@
 
 .flip-tile {
   background-color: transparent;
-  height: 90%;
-  width: 20%;
+  height: 55px;
+  width: 55px;
   margin-inline: 5px;
   perspective: 1000px;
 }
@@ -164,6 +191,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
+  border-radius: 3px;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
@@ -187,21 +215,26 @@
 }
 
 .tile-yellow {
-  background-color: rgb(241, 188, 11);
+  background-color: #ac9202;
   border: none;
 }
 
 .tile-green {
-  background-color: green;
+  background-color: #3e8f35;
   border: none;
 }
 
 @media screen and (min-width: 385px) {
-  .keyboard-key {
-    width: 2rem;
-    height: 4rem;
-  }
-  .keyboard-big-key {
-    width: 4rem;
+  /* .keyboard-key {
+    width: 2.2rem;
+    height: 87%;
+  } */
+  /* .keyboard-big-key {
+    width: 3.5rem;
+  } */
+
+  .flip-tile {
+    height: 65px;
+    width: 65px;
   }
 }
