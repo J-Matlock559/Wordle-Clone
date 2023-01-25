@@ -4,10 +4,9 @@ function InvalidWord({showInvalid, setShowInvalid}) {
   if (showInvalid === false) return null
 
   return (
-    <div className='win-container'>
-      <div className='win-card'>
-        <h2>Word not in word list.</h2>
-        <button style={{padding: '20px'}} onClick={() => {setShowInvalid(false)}}>Okay</button>
+    <div className='invalid-word'>
+      <div className='invalid-card'>
+        <p>Word not in word list</p>
       </div>
     </div>
   )

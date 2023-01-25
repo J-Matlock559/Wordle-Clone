@@ -162,8 +162,15 @@ function App() {
     setShowLose(true);
   }
 
+  const hideInvalid = () => {
+    setShowInvalid(false);
+  }
+
   const isInvalid = () => {
     setShowInvalid(true);
+    setTimeout(() => {
+      hideInvalid();
+    }, 2000);
   }
 
   const keyboardColors = () => {

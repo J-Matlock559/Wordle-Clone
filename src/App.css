@@ -24,7 +24,8 @@
 
 
 .keyboard {
-  height: 30%;
+  height: 25%;
+  z-index: 100;
   /* border: 1px solid white; */
 }
 
@@ -70,6 +71,7 @@
   background-color: rgba(0, 0, 0, .5);
   height: 100vh;
   width: 100vw;
+  z-index: 101;
 }
 
 .win-card {
@@ -80,6 +82,7 @@
   align-items: center;
   width: 80%;
   min-height: 40%;
+  max-height: 100%;
   padding: 2rem;
   background-color: rgb(43, 43, 43);
 }
@@ -95,6 +98,17 @@
   justify-content: space-between;
   width: 100%;
   /* margin-top: 2rem; */
+}
+
+.stat-spread {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.stat-spread > p {
+  margin: 3px;
 }
 
 .stats > div {
@@ -116,9 +130,13 @@
 }
 
 .board {
-  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 65%;
   width: 100%;
-  padding: 1.7rem;
+  padding: 1rem;
   /* border: 1px solid white; */
 }
 
@@ -126,30 +144,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 15%;
+  height: 65px;
   width: 100%;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
-
-.board-tile {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2rem;
-  height: 90%;
-  width: 20%;
-  margin-inline: 3px;
-  background-color: #1a1a1a;
-  border: 1px solid rgb(102, 102, 102);
-}
-
-
 
 .flip-tile {
   background-color: transparent;
   height: 55px;
   width: 55px;
-  margin-inline: 5px;
+  margin-inline: 4px;
   perspective: 1000px;
 }
 
@@ -222,6 +226,36 @@
 .tile-green {
   background-color: #3e8f35;
   border: none;
+}
+
+.invalid-word {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.invalid-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  height: 2rem;
+  margin-top: 20%;
+  padding: 10px;
+  border-radius: 500px;
+  background-color: rgb(221, 221, 221);
+}
+
+.key-tap {
+  animation: pop .1s;
+}
+
+@keyframes pop {
+  0% { scale: 1; }
+  50% { scale: 1.0625; }
+  100% { scale: 1; }
 }
 
 @media screen and (min-width: 385px) {
